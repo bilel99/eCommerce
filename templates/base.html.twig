@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="...">
+        <meta name="generator" content="...">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+            {# Custom #}
+            <link rel="stylesheet" href="{{ asset('front/css/main.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+    {% include 'front/partials/nav.html.twig' %}
+    <main role="main">
+        <div class="messages">
+            {% include 'front/partials/success-message.html.twig' %}
+            {% include 'front/partials/error-message.html.twig' %}
+            {% include 'front/partials/warning-message.html.twig' %}
+            {% include 'front/partials/info-message.html.twig' %}
+        </div>
+
+        {% block body %}{% endblock %}
+    </main>
+    {% include 'front/partials/footer.html.twig' %}
+
+        {% block javascripts %}
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.js"
+                    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                    crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        {% endblock %}
+    </body>
+</html>

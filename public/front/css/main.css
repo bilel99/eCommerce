@@ -1,0 +1,53 @@
+/**
+Home
+ */
+.jumbotron {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron-heading {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+/**
+Navigation
+ */
+
+
+/**
+Footer
+ */
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #fff;
+}
+.ico-fac {
+    color: #0056B3;
+}
+.ico-twi {
+    color: #1CC4F8;
+}
+.ico-goo {
+    color: #D02C1F;
+}
+footer p {
+    margin-bottom: .25rem;
+}
