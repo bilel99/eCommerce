@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Media;
 use App\Entity\User;
 use App\Form\ProfilUserType;
-use App\Form\UserAvatarType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -38,9 +37,11 @@ class UserAdminController extends AbstractController
      */
     public function show(User $user)
     {
+        $user = $this->getDoctrine()->getRepository(User::class)
+            ->getUser($user->getId());
         return $this->render('admin/user/show.html.twig', [
             'page_controller' => 'user',
-            'user' => $user
+            'user' => $user[0]
         ]);
     }
 
@@ -58,11 +59,13 @@ class UserAdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $media = new Media();
-            $media->setName('Avatar');
-            $media->setFile($form['media']->getData()->getFile());
-            $user->setMedia($media);
-            $em->persist($media);
+            if ($form['media']->getData()->getFile() !== null){
+                $media = new Media();
+                $media->setName('Avatar');
+                $media->setFile($form['media']->getData()->getFile());
+                $user->setMedia($media);
+                $em->persist($media);
+            }
             $em->persist($user);
             $em->flush();
             $this->addFlash('success', 'The user is updated successfully!');

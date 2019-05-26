@@ -8,13 +8,16 @@
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="" class="card-img" alt="user avatar">
+                        {% if user.media is not defined or user.media is null %}
+                            <img src="{{ asset('images/default_avatar_user.png') }}" class="card-img img-responsive" alt="user avatar">
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(user.media, 'file') }}" class="card-img img-responsive" alt="user avatar">
+                        {% endif %}
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <span class="badge badge-success">User is enable</span>
-                            <span class="badge badge-success">User is ROLE_ADMIN</span>
-                            <h5 class="card-title">{{ user.name ~ '-' ~ user.firstname }}</h5>
+                            <span class="badge badge-{{ user.roles[0] == 'ROLE_ADMIN' ? 'warning' : 'primary' }}">User is {{ user.roles[0] }}</span>
+                            <h5 class="card-title">{{ user.name ~ ' - ' ~ user.firstname }}</h5>
                             <p class="card-text">{{ user.email }}</p>
                             <p class="card-text">
                                 <small class="text-muted">Create at {{ user.createdAt|date('d-m-Y') }}</small>
