@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -25,14 +25,18 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig',
+            ['last_username' => $lastUsername,
+                'error' => $error,
+                'page_controller' => 'login'
+            ]);
     }
 
     /**
      * @Route("/register", name="security.register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
@@ -62,7 +66,8 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('security/register.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'page_controller' => 'register'
         ]);
     }
 

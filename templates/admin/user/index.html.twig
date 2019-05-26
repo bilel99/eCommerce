@@ -1,0 +1,46 @@
+{% extends 'admin.base.html.twig' %}
+{% block title %}User Admin{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+
+            <!-- float button -->
+            <a href="{{ path('admin.add.admin.user') }}" class="float">
+                <i class="fas fa-plus my-float"></i>
+            </a>
+            <div class="label-container">
+                <div class="label-text">Create a admin user</div>
+                <i class="fa fa-play label-arrow"></i>
+            </div>
+
+            <table class="table table-bordered table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
+                    <th scope="col">firstname</th>
+                    <th scope="col">email</th>
+                    <th scope="col">created at</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in users %}
+                <tr>
+                    <th scope="row">{{ row.id }}</th>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.firstname }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.createdAt|date('d-m-y') }}</td>
+                    <td>
+                        <a href="{{ path('admin.user.show', {'id': row.id}) }}" class="btn btn-primary">show <i class="fas fa-book-reader"></i></a>
+                        <a href="{{ path('admin.user.edit', {'id': row.id}) }}" class="btn btn-warning">edit <i class="fas fa-edit"></i></a>
+                        <a href="{{ path('admin.user.delete', {'id': row.id}) }}" class="btn btn-danger">delete <i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

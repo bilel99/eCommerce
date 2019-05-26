@@ -62,15 +62,18 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a href="" class="dropdown-item">{{ app.user.name ~' '~ app.user.firstname }}</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin.dashboard') }}" class="dropdown-item">Je suis admin</a>
+                        {% endif %}
                         <div class="divider"></div>
                         <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
                     </div>
                 </li>
             {% else %}
-                <li class="nav-item">
+                <li class="nav-item {% if page_controller is defined and page_controller == 'login' %}active{% endif %}">
                     <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if page_controller is defined and page_controller == 'register' %}active{% endif %}">
                     <a class="nav-link" href="{{ path('security.register') }}">Register</a>
                 </li>
             {% endif %}

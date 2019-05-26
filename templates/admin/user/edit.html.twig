@@ -1,0 +1,22 @@
+{% extends 'admin.base.html.twig' %}
+{% block title %}User Admin{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            <h3>Edit user</h3>
+            <h5>email is {{ user.email }}</h5>
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.firstname) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.media) }}
+            </div>
+            <button type="submit" class="btn btn-success">Validate</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

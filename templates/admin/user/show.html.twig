@@ -1,0 +1,30 @@
+{% extends 'admin.base.html.twig' %}
+{% block title %}User Admin{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+
+
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="" class="card-img" alt="user avatar">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <span class="badge badge-success">User is enable</span>
+                            <span class="badge badge-success">User is ROLE_ADMIN</span>
+                            <h5 class="card-title">{{ user.name ~ '-' ~ user.firstname }}</h5>
+                            <p class="card-text">{{ user.email }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">Create at {{ user.createdAt|date('d-m-Y') }}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

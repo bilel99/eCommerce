@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
+ * @Vich\Uploadable()
  */
 class Media
 {
@@ -27,6 +30,15 @@ class Media
      * @ORM\Column(type="string", length=255)
      */
     private $path;
+
+    /**
+     * @var File
+     * @Assert\Image(
+     *     mimeTypes="image/*"
+     * )
+     * @Vich\UploadableField(mapping="images", fileNameProperty="path")
+     */
+    private $file;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -50,6 +62,8 @@ class Media
 
     public function __construct()
     {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime('now');
         $this->products = new ArrayCollection();
     }
 
@@ -79,6 +93,17 @@ class Media
     {
         $this->path = $path;
 
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
         return $this;
     }
 
