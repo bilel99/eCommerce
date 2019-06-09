@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @IsGranted("ROLE_ADMIN", message="Access denied 302")
+ * Class UserAdminController
+ * @package App\Controller\Admin
+ */
 class UserAdminController extends AbstractController
 {
     /**

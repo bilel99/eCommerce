@@ -40,6 +40,8 @@ class Category
 
     public function __construct()
     {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime('now');
         $this->products = new ArrayCollection();
     }
 

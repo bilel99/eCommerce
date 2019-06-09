@@ -17,8 +17,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="">Stocks <i class="fas fa-boxes"></i></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Categories <i class="fas fa-stream"></i></a>
+            <li class="nav-item {% if page_controller is defined and page_controller == 'categories' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('admin.categories') }}">Categories <i class="fas fa-stream"></i></a>
             </li>
         </ul>
         <ul class="navbar-nav">

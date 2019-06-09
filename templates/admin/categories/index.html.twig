@@ -1,0 +1,42 @@
+{% extends 'admin.base.html.twig' %}
+{% block title %}Categories Admin{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+
+            {% include 'admin/modals/create_category_modal.html.twig' %}
+            <!-- float button -->
+            <a href="" class="float" data-toggle="modal" data-target="#createCategoryModal">
+                <i class="fas fa-plus my-float"></i>
+            </a>
+            <div class="label-container">
+                <div class="label-text">Create a new category</div>
+                <i class="fa fa-play label-arrow"></i>
+            </div>
+
+            <table class="table table-bordered table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">created at</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in categories %}
+                    <tr>
+                        <th scope="row">{{ row.id }}</th>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.createdAt|date('d-m-y') }}</td>
+                        <td>
+                            <a href="" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ row.id }}">edit <i class="fas fa-edit"></i></a>
+                            <a href="{{ path('admin.category.delete', {'id': row.id}) }}" class="btn btn-danger">delete <i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {{ include('admin/modals/edit_category_modal.html.twig') }}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
